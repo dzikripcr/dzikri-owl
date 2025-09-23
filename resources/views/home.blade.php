@@ -139,6 +139,7 @@
                             <span class="badge text-bg-success">Laravel</span>
                             <span class="badge text-bg-danger">Bootstrap</span>
                         </div>
+                        {{-- parsing data array list --}}
                         <ul class="list-group mb-3">
                             @foreach ($list_pendidikan as $lp)
                                 <li class="list-group-item">{{$lp}}</li>
