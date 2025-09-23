@@ -140,9 +140,9 @@
                             <span class="badge text-bg-danger">Bootstrap</span>
                         </div>
                         <ul class="list-group mb-3">
-                            <li class="list-group-item">Item Satu</li>
-                            <li class="list-group-item">Item Dua</li>
-                            <li class="list-group-item">Item Tiga</li>
+                            @foreach ($list_pendidikan as $lp)
+                                <li class="list-group-item">{{$lp}}</li>
+                            @endforeach
                         </ul>
                         <div class="p-3 border rounded">
                             <strong>Div umum</strong> — ini hanya <em>container</em> untuk konten bebas.
