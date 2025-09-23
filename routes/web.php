@@ -46,3 +46,5 @@ Route::get('/matakuliah/create', [MatakuliahController::class, 'create']);
 Route::get('/matakuliah/edit/{kode?}', [MatakuliahController::class, 'edit']);
 Route::get('/matakuliah/update/{kode?}', [MatakuliahController::class, 'update']);
 
+//route home controller
+Route::get('/home',[HomeController::class,'index']);
