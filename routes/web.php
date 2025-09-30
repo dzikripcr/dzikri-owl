@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
 
@@ -53,3 +54,7 @@ Route::get('/home',[HomeController::class,'index']);
 
 //route pegawai controller
 Route::get('/pegawai',[PegawaiController::class,'index']);
+
+//route untuk controller question
+Route::post('question/store', [QuestionController::class, 'store'])
+		->name('question.store');
