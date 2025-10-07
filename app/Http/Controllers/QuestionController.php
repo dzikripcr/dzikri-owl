@@ -31,17 +31,22 @@ class QuestionController extends Controller
         $request->validate([
 		    'nama'  => 'required|max:10',
 		    'email' => ['required','email'],
-		    'pertanyaan' => 'required|max:300',
+		    'pertanyaan' => 'required|max:300|min:8',
 		],[
             'nama.required'=> 'Nama tidak boleh kosong',
-            'email.email'=> 'Email tidak valid'
+            'email.email'=> 'Email tidak valid',
+            'pertanyaan.required'=> 'Pertanyaan tidak boleh kosong'
         ]);
 
         $data['nama']=$request->nama;
         $data['email']=$request->email;
         $data['pertanyaan']=$request->pertanyaan;
 
-        return view('home-question-respon',$data);
+        // return view('home-question-respon',$data);
+        return redirect()->route('home')->with('info', 'Terima kasih atas pertanyaan <b>'.$data['nama'].'!</b>
+                                                        Silahkan cek email anda di <b>'.$data['email'].'</b> untuk respon lebih lanjut');
+        // return redirect()->away('https://tokopedia.com');
+        // return redirect('/home')->with('info','Terima kasih!');
     }
 
     /**

@@ -50,7 +50,7 @@ Route::get('/matakuliah/edit/{kode?}', [MatakuliahController::class, 'edit']);
 Route::get('/matakuliah/update/{kode?}', [MatakuliahController::class, 'update']);
 
 //route home controller
-Route::get('/home',[HomeController::class,'index']);
+Route::get('/home',[HomeController::class,'index'])->name('home');
 
 //route pegawai controller
 Route::get('/pegawai',[PegawaiController::class,'index']);

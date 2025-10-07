@@ -8,6 +8,7 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-style.css') }}">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -80,11 +81,15 @@
         </div>
     </nav>
 
+    <div class="logo">
+        <img src="{{ asset('assets/images/logo.jpeg') }}" alt="Logo">
+    </div>
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
             {{-- memanggil key dari array yang dikirim controller --}}
-            <h1> {{ $username }} </h1>
+            <div class="font-custom"><h1> {{ $username }} </h1></div>
             <p> {{ $last_login }} </p>
             <p class="lead mb-0">A simple and elegant app using Bootstrap 5 and Laravel Blade.</p>
         </div>
@@ -173,6 +178,15 @@
                                         <li>{{$error}}</li>
                                     @endforeach
                                 </ul>
+                            </div>
+                        @endif
+
+                        {{-- Notif Berhasil di Submit --}}
+                        @if (session('info'))
+                            <div class="alert alert-info">
+                                {{-- gunanya tanda seru 2 untuk menampilkan tag-tag html,
+                                contoh kita menggunakan tag bold di controller --}}
+                                {!! session('info') !!}
                             </div>
                         @endif
 
@@ -275,5 +289,4 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
