@@ -15,7 +15,7 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('pelanggan.index')}}">Pelanggan</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tambah Pelanggan</li>
                 </ol>
             </nav>
