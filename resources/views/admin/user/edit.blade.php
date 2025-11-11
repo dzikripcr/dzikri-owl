@@ -68,13 +68,13 @@
                                 <!-- Password -->
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="text" id="password" class="form-control" required name="password"
+                                    <input type="password" id="password" class="form-control" required name="password"
                                         value="{{ $dataUser->password }}">
                                 </div>
                                 <!-- Confirm Password -->
                                 <div class="mb-3">
                                     <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                                    <input type="text" id="password_confirmation" class="form-control" required
+                                    <input type="password" id="password_confirmation" class="form-control" required
                                         name="password_confirmation">
                                 </div>
                                 <!-- Buttons -->

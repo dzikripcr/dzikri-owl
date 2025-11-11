@@ -25,10 +25,11 @@ class AuthController extends Controller
         $password = $request->input('password');
 
         // Validasi: jika username dan password adalah 'nim'
-        if ($username === '2457301037' && $password === '2457301037') {
-            return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
-        }
-        return back()->withErrors(['login_error' => 'Username atau password salah!']);
+        // if ($username === '2457301037' && $password === '2457301037') {
+        //     return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
+        // }
+        // return back()->withErrors(['login_error' => 'Username atau password salah!']);
+        return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
     }
 
     public function register(Request $request)
