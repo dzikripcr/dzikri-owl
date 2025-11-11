@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -21,15 +22,32 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $username = $request->input('username');
-        $password = $request->input('password');
+        // $username = $request->input('username');
+        // $password = $request->input('password');
 
-        // Validasi: jika username dan password adalah 'nim'
-        // if ($username === '2457301037' && $password === '2457301037') {
-        //     return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
-        // }
-        // return back()->withErrors(['login_error' => 'Username atau password salah!']);
-        return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
+        // // Validasi: jika username dan password adalah 'nim'
+        // // if ($username === '2457301037' && $password === '2457301037') {
+        // //     return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
+        // // }
+        // // return back()->withErrors(['login_error' => 'Username atau password salah!']);
+        // return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
+        $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (! $user) {
+            return redirect()->route('login')->withErrors(['email' => 'Email tidak ditemukan']);
+        }
+
+        if (! Hash::check($request->password, $user->password)) {
+            return redirect()->route('login')->withErrors(['password' => 'Password salah']);
+        }
+
+        Auth::login($user);
+        return redirect()->route('dashboard-admin.index');
     }
 
     public function register(Request $request)
