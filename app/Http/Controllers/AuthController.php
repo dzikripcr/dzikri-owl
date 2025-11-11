@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -32,14 +34,14 @@ class AuthController extends Controller
         // // return back()->withErrors(['login_error' => 'Username atau password salah!']);
         // return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
         $request->validate([
-            'email'    => 'required|email',
+            'name'    => 'required',
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('name', $request->name)->first();
 
         if (! $user) {
-            return redirect()->route('login')->withErrors(['email' => 'Email tidak ditemukan']);
+            return redirect()->route('login')->withErrors(['name' => 'Username tidak ditemukan']);
         }
 
         if (! Hash::check($request->password, $user->password)) {
