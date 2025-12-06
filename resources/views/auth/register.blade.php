@@ -118,7 +118,7 @@
                             <div class="d-flex justify-content-center align-items-center mt-4">
                                 <span class="fw-normal">
                                     Sudah punya akun?
-                                    <a href="{{ route('login') }}" class="fw-bold">Login di sini</a>
+                                    <a href="{{ route('login.index') }}" class="fw-bold">Login di sini</a>
                                 </span>
                             </div>
                         </div>

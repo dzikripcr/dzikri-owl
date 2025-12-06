@@ -46,6 +46,7 @@
                             <table id="table-user" class="table table-centered table-nowrap mb-0 rounded">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th class="border-0">Foto Profil</th>
                                         <th class="border-0">Nama Lengkap</th>
                                         <th class="border-0">Email</th>
                                         <th class="border-0">Role</th>
@@ -55,6 +56,14 @@
                                 <tbody>
                                     @foreach ($dataUser as $item)
                                         <tr>
+                                            <td>
+                                                <img src="{{ $item->profile_picture_url }}"
+                                                     alt="Profile Picture"
+                                                     class="rounded-circle"
+                                                     width="50"
+                                                     height="50"
+                                                     style="object-fit: cover;">
+                                            </td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->role }}</td>

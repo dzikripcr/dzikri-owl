@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -15,16 +14,16 @@ class AuthController extends Controller
     public function index()
     {
         if (Auth::check()) {
-		       //Redirect ke halaman dashboard
-               return redirect()->route('dashboard');
-		    }
-		    //Redirect ke halaman login
+            //Redirect ke halaman dashboard
+            return redirect()->route('dashboard');
+        }
+        //Redirect ke halaman login
         return view('auth.login');
     }
 
     public function showregis()
     {
-        return view('admin.register');
+        return view('auth.register');
     }
 
     public function login(Request $request)
@@ -54,16 +53,24 @@ class AuthController extends Controller
             'password' => [
                 'required',
                 'confirmed',
-                'regex:/^(?=.*[A-Z])(?=.*[0-9]).+$/'
-            ]
+                'regex:/^(?=.*[A-Z])(?=.*[0-9]).+$/',
+            ],
         ], [
-            'username.required' => 'Username wajib diisi.',
-            'password.required' => 'Password wajib diisi.',
+            'username.required'  => 'Username wajib diisi.',
+            'password.required'  => 'Password wajib diisi.',
             'password.confirmed' => 'Konfirmasi password tidak sesuai.',
-            'password.regex' => 'Password harus mengandung huruf kapital dan angka.',
+            'password.regex'     => 'Password harus mengandung huruf kapital dan angka.',
         ]);
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan Login');
+        // Simpan ke database
+        User::create([
+            'name' => $request->username,
+            'email'    => $request->email,
+            'password' => Hash::make($request->password), // Wajib hash password!
+                                                          // tambah field lain jika diperlukan
+        ]);
+
+        return redirect()->route('login.index')->with('success', 'Registrasi berhasil! Silakan Login');
     }
 
     public function logout(Request $request)
