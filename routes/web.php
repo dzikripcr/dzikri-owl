@@ -81,6 +81,10 @@ Route::resource('pelanggan', PelangganController::class);
 //route user controller
 Route::resource('user', UserController::class);
 
+// routes untuk upload file
+Route::post('pelanggan/{pelanggan}/upload-files', [PelangganController::class, 'uploadFiles'])->name('pelanggan.upload-files');
+Route::delete('pelanggan/{pelanggan}/files/{file}', [PelangganController::class, 'deleteFile'])->name('pelanggan.delete-file');
+
 //route auth logout user
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
