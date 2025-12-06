@@ -83,3 +83,16 @@ Route::resource('user', UserController::class);
 
 //route auth logout user
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+//route middleware checkislogin
+Route::group(['middleware' => ['checkislogin']], function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    route::get('pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
+    route::get('user', [UserController::class, 'index'])->name('user.index');
+});
+
+//route middleware checkrole
+Route::group(['middleware' => ['checkrole:Super Admin']], function () {
+    Route::get('user', [UserController::class,'index'])->name('user.index');
+    route::get('pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
+});

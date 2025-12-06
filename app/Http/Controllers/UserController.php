@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data['dataUser'] = User::all();
+        $data['dataUser'] = User::paginate(10);
         return view('admin.user.index', $data);
     }
 
@@ -49,6 +49,7 @@ class UserController extends Controller
 
         $data['name']     = $request->name;
         $data['email']    = $request->email;
+        $data['role'] = $request->role;
         $data['password'] = $request->password;
         $data['password'] = Hash::make($request->password);
 
@@ -100,6 +101,7 @@ class UserController extends Controller
 
         $user->name     = $request->name;
         $user->email    = $request->email;
+        $user->role    = $request->role;
         $user->password = $request->password;
 
         $user->save();

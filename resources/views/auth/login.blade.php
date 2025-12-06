@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <form action="{{route('login')}}" class="mt-4" method="POST">
+        <form action="{{route('auth.login')}}" class="mt-4" method="POST">
             @csrf
             <!-- Form -->
             <div class="form-group mb-4">
@@ -83,7 +83,7 @@
         <div class="d-flex justify-content-center align-items-center mt-4">
             <span class="fw-normal">
                 Not registered?
-                <a href="{{route('register')}}" class="fw-bold">Create account</a>
+                <a href="{{route('register.index')}}" class="fw-bold">Create account</a>
             </span>
         </div>
     </div>

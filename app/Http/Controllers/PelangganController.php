@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PelangganController extends Controller
 {
@@ -11,6 +12,11 @@ class PelangganController extends Controller
      */
     public function index(Request $request)
     {
+        if (!Auth::check()) {
+		       //Redirect ke halaman dashboard
+               return redirect()->route('login.index');
+		    }
+		    //Redirect ke halaman pelanggan
         $filterableColumns = ['gender'];
         $searchableColumns = ['first_name']; //sesuai kolom Pelanggan
         $data['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)->search($request,$searchableColumns)->paginate(10)->withQueryString();
