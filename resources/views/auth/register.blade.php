@@ -68,45 +68,23 @@
 
                                 <!-- Nama -->
                                 <div class="form-group mb-4">
-                                    <label for="nama">Nama Lengkap</label>
+                                    <label for="nama">Username</label>
                                     <div class="input-group">
                                         <span class="input-group-text">
                                             <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"></path></svg>
                                         </span>
-                                        <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}" placeholder="Masukkan nama lengkap" required>
-                                    </div>
-                                </div>
-
-                                <!-- Alamat -->
-                                <div class="form-group mb-4">
-                                    <label for="alamat">Alamat</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                                        </span>
-                                        <textarea class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat lengkap" rows="2" required>{{ old('alamat') }}</textarea>
-                                    </div>
-                                </div>
-
-                                <!-- Tanggal Lahir -->
-                                <div class="form-group mb-4">
-                                    <label for="tanggal_lahir">Tanggal Lahir</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                                        </span>
-                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
+                                        <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" placeholder="Masukkan nama lengkap" required>
                                     </div>
                                 </div>
 
                                 <!-- Username -->
                                 <div class="form-group mb-4">
-                                    <label for="username">Username</label>
+                                    <label for="username">Email</label>
                                     <div class="input-group">
                                         <span class="input-group-text">
                                             <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
                                         </span>
-                                        <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" placeholder="Masukkan username" required>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="Masukkan username" required>
                                     </div>
                                 </div>
 
@@ -117,7 +95,7 @@
                                         <span class="input-group-text">
                                             <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
                                         </span>
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password harus mengandung huruf kapital dan angka" required>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
                                     </div>
                                 </div>
 

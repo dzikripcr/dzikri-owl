@@ -68,11 +68,11 @@ Route::get('/dashboard',[DashboardController::class,'index'])
         ->name('dashboard');
 
 //route halaman login admin
-Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
 //route halaman register admin
-Route::get('/register', [AuthController::class, 'showregis'])->name('register');
+Route::get('/register', [AuthController::class, 'showregis'])->name('register.index');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 //route pelanggan controller
@@ -80,3 +80,6 @@ Route::resource('pelanggan', PelangganController::class);
 
 //route user controller
 Route::resource('user', UserController::class);
+
+//route auth logout user
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');

@@ -14,7 +14,12 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('admin.login');
+        if (Auth::check()) {
+		       //Redirect ke halaman dashboard
+               return redirect()->route('dashboard');
+		    }
+		    //Redirect ke halaman login
+        return view('auth.login');
     }
 
     public function showregis()
@@ -24,40 +29,27 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $username = $request->input('username');
-        $password = $request->input('password');
+        $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required',
+        ]);
 
-        // Validasi: jika username dan password adalah 'nim'
-        // if ($username === '2457301037' && $password === '2457301037') {
-        //     return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
-        // }
-        // return back()->withErrors(['login_error' => 'Username atau password salah!']);
-        return redirect('/dashboard')->with('success', 'Selamat Datang Admin!');
-        // $request->validate([
-        //     'name'    => 'required',
-        //     'password' => 'required',
-        // ]);
+        $user = User::where('email', $request->email)->first();
+        if ($user && Hash::check($request->password, $user->password)) {
 
-        // $user = User::where('name', $request->name)->first();
+            Auth::login($user);
+            //session untuk last login
+            session(['last_login' => now()]);
 
-        // if (! $user) {
-        //     return redirect()->route('login')->withErrors(['name' => 'Username tidak ditemukan']);
-        // }
-
-        // if (! Hash::check($request->password, $user->password)) {
-        //     return redirect()->route('login')->withErrors(['password' => 'Password salah']);
-        // }
-
-        // Auth::login($user);
-        // return redirect()->route('dashboard-admin.index');
+            return redirect()->route('dashboard')->with('success', 'Login berhasil!');
+        } else {
+            return back()->withErrors(['email' => 'Email atau password salah'])->withInput();
+        }
     }
 
     public function register(Request $request)
     {
         $request->validate([
-            'nama' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'alamat' => 'required|max:300',
-            'tanggal_lahir' => 'required|date',
             'username' => 'required',
             'password' => [
                 'required',
@@ -65,12 +57,6 @@ class AuthController extends Controller
                 'regex:/^(?=.*[A-Z])(?=.*[0-9]).+$/'
             ]
         ], [
-            'nama.required' => 'Nama wajib diisi.',
-            'nama.regex' => 'Nama tidak boleh mengandung angka.',
-            'alamat.required' => 'Alamat wajib diisi.',
-            'alamat.max' => 'Alamat maksimal 300 karakter.',
-            'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
-            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
             'username.required' => 'Username wajib diisi.',
             'password.required' => 'Password wajib diisi.',
             'password.confirmed' => 'Konfirmasi password tidak sesuai.',
@@ -78,6 +64,16 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan Login');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();      // Hapus semua session
+        $request->session()->regenerateToken(); // Cegah CSRF
+
+        // Redirect ke halaman login
+        return redirect()->route('login');
     }
 
     /**
